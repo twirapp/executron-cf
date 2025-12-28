@@ -4,7 +4,7 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "my-sandbox",
+  "name": "twir-executron-cf",
   "main": "src/index.ts",
   "compatibility_date": "2025-05-06",
   "compatibility_flags": ["nodejs_compat", "request_signal_passthrough"],
@@ -16,7 +16,7 @@
       "class_name": "Sandbox",
       "image": "./Dockerfile",
       "instance_type": "basic",
-      "max_instances": 2,
+      "max_instances": 20,
     },
   ],
   "durable_objects": {
