@@ -1,5 +1,5 @@
 import { getSandbox } from "@cloudflare/sandbox";
-import { createHash } from "node:crypto";
+import { createHash, randomInt } from "node:crypto";
 
 export { Sandbox } from "@cloudflare/sandbox";
 
@@ -43,11 +43,12 @@ export default {
     }
 
     let ctxId: string | null = null;
-    const codeId =
-      reqData.userId ??
-      createHash("sha256").update(reqData.code).digest("hex").slice(0, 40);
-    const sandBoxId = `executron-${codeId.toLowerCase()}`;
-    const sandbox = getSandbox(env.Sandbox, sandBoxId);
+    // const codeId =
+    //   reqData.userId ??
+    //   createHash("sha256").update(reqData.code).digest("hex").slice(0, 40);
+    // const sandBoxId = `executron-${codeId.toLowerCase()}`;
+    const sandBoxId = `executron-${randomInt(20)}`;
+    const sandbox = getSandbox(env.Sandbox, `twirapp-${randomInt(20)}`);
 
     const lang = reqData.language ?? "typescript";
 
@@ -55,7 +56,7 @@ export default {
 
     try {
       if (lang == "javascript" || lang === "typescript") {
-        const tmpFilePath = `/tmp/code${sandBoxId}.mts`;
+        const tmpFilePath = `/tmp/code${sandBoxId + Date.now()}.mts`;
         await sandbox.writeFile(
           tmpFilePath,
           `
