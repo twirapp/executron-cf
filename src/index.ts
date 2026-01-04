@@ -48,7 +48,7 @@ export default {
     //   createHash("sha256").update(reqData.code).digest("hex").slice(0, 40);
     // const sandBoxId = `executron-${codeId.toLowerCase()}`;
     const sandBoxId = `executron-${randomInt(1, 4)}`; // max=containers count + 1 from wrangler configuration
-    const sandbox = getSandbox(env.Sandbox, `twirapp-${randomInt(20)}`);
+    const sandbox = getSandbox(env.Sandbox, sandBoxId);
 
     const lang = reqData.language ?? "typescript";
 
