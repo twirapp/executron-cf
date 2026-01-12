@@ -68,7 +68,7 @@ export default {
           })());
         `,
         );
-        const result = await sandbox.exec(`bun ${tmpFilePath}`, {
+        const result = await sandbox.exec(`bun run ${tmpFilePath}`, {
           timeout: 5000,
         });
 
